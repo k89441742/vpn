@@ -1,0 +1,5 @@
+clients/*.conf
+!clients/.gitkeep
+*.key
+*.pub
+.DS_Store

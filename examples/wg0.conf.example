@@ -1,0 +1,19 @@
+# 示例：安装脚本会在服务器上生成真正的 /etc/wireguard/wg0.conf
+# 不要把真实私钥提交到 Git。
+
+[Interface]
+Address = 10.7.0.1/24
+ListenPort = 34782
+PrivateKey = SERVER_PRIVATE_KEY
+PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT
+PostDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT
+
+[Peer]
+# windows
+PublicKey = CLIENT_WINDOWS_PUBLIC_KEY
+AllowedIPs = 10.7.0.2/32
+
+[Peer]
+# phone
+PublicKey = CLIENT_PHONE_PUBLIC_KEY
+AllowedIPs = 10.7.0.3/32

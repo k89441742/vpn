@@ -1,0 +1,14 @@
+# 示例客户端配置。真实文件由 install.sh / add-client.sh 生成，在服务器：
+#   /root/wireguard-clients/<名字>.conf
+
+[Interface]
+PrivateKey = CLIENT_PRIVATE_KEY
+Address = 10.7.0.2/24
+DNS = 1.1.1.1, 8.8.8.8
+MTU = 1420
+
+[Peer]
+PublicKey = SERVER_PUBLIC_KEY
+AllowedIPs = 0.0.0.0/0
+Endpoint = 65.49.199.104:34782
+PersistentKeepalive = 25
